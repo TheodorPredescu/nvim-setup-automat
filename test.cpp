@@ -22,7 +22,5 @@ int main() {
             printf("File removed successfully\n");
         }
     }
-
-
     return 0;
 }
