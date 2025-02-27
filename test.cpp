@@ -10,6 +10,7 @@ void ListProcesses() {
     return;
   }
   std::cout << "nush";
+  // adding stuff
   pe32.dwSize = sizeof(PROCESSENTRY32);
 
   if (Process32First(hSnapshot, &pe32)) {
