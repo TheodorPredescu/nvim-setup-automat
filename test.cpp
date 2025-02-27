@@ -1,9 +1,9 @@
-#include <cstdio>
-#include <iostream>
+#git log-- graph-- oneline-- all-- decorate
+include<iostream>
 #include <tlhelp32.h>
 #include <windows.h>
 
-void ListProcesses() {
+    void ListProcesses() {
   const char *processName = "WhatsApp.exe";
   HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
   if (hSnapshot == INVALID_HANDLE_VALUE) {
@@ -11,6 +11,7 @@ void ListProcesses() {
     return;
   }
   std::cout << "nush";
+  // adding stuff
   pe32.dwSize = sizeof(PROCESSENTRY32);
 
   if (Process32First(hSnapshot, &pe32)) {
@@ -30,26 +31,6 @@ void ListProcesses() {
 }
 
 int main() {
-<<<<<<< HEAD
-  const char *oldFilename = "./plecare/plecare.txt";
-  const char *newFilename = "./destinatie/proba.txt";
-
-  std::cout << "(1). Move\n(2). Delete\n\nCommand: ";
-  int command;
-  std::cin >> command;
-  if (command == 1) {
-    // Attempt to move the file
-    if (std::rename(newFilename, oldFilename) != 0) {
-      perror("Error moving file");
-    } else {
-      printf("File moved successfully\n");
-    }
-  } else if (command == 2) {
-    if (std::remove(oldFilename) != 0) {
-      perror("Error moving file");
-    } else {
-      printf("File removed successfully\n");
-    }
-  }
+  ListProcesses();
   return 0;
 }
