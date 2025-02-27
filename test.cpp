@@ -11,6 +11,7 @@ include<iostream>
     return;
   }
   std::cout << "nush";
+  // nush ce sa mai scri
   // adding stuff
   pe32.dwSize = sizeof(PROCESSENTRY32);
 
