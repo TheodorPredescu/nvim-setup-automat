@@ -10,8 +10,9 @@ if dpkg -s neovim >/dev/null 2>&1; then
     echo "nvim is configurated"
 else
     echo -e "nvim is not configurated\n     Installing..."
-    sudo apt update
-    sudo apt install -y neovim
+    curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim.appimage
+    chmod u+x nvim.appimage
+    sudo mv nvim.appimage /usr/local/bin/nvim
 fi
 
 if [[ -d ${HOME}/.config ]]; then
