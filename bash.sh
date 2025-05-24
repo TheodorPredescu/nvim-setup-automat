@@ -24,6 +24,7 @@ else
 
     tar -xzf nvim-linux-x86_64.tar.gz
     sudo mv nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+    sudo cp -r nvim-linux-x86_64/share/nvim /usr/local/share/
     rm nvim-linux-x86_64.tar.gz
     rm -rf nvim-linux-x86_64
 
