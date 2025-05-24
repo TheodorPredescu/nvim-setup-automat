@@ -4,7 +4,7 @@ source packages.conf
 
 echo "Works fine"
 
-NVIM_V="v0.10.0"
+NVIM_V="v0.11.1"
 
 sudo -v
 # checking if lazyvim is installed
