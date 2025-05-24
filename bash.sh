@@ -9,13 +9,15 @@ NVIM_V="v0.11.1"
 
 sudo -v
 # checking if lazyvim is installed
-if dpkg -s neovim >/dev/null 2>&1; then
+if command -v nvim >/dev/null 2>&1; then
     echo "nvim is configurated"
 else
     echo -e "nvim is not configurated\n     Installing..."
     curl -LO "https://github.com/neovim/neovim/releases/download/${NVIM_V}/nvim-linux-x86_64.tar.gz"
 
-    if [[ ! -f nvim.appimage ]]; then
+    if [[ -f nvim-linux-x86_64.tar.gz ]]; then
+        echo "neovim pulled correcly"
+    else
         echo "Error in pulling ${NVIM_V} neovim. Exiting..."
         exit 1
     fi
