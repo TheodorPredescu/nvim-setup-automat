@@ -14,8 +14,6 @@ if dpkg -s neovim >/dev/null 2>&1; then
 else
     echo -e "nvim is not configurated\n     Installing..."
     curl -LO "https://github.com/neovim/neovim/releases/download/${NVIM_V}/nvim-linux-x86_64.tar.gz"
-    tar -xzf nvim-linux-x86_64.tar.gz
-    sudo mv nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 
     if [[ ! -f nvim.appimage ]]; then
         echo "Error in pulling ${NVIM_V} neovim. Exiting..."
@@ -25,6 +23,7 @@ else
     tar -xzf nvim-linux-x86_64.tar.gz
     sudo mv nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
     rm nvim-linux-x86_64.tar.gz
+    rm nvim-linux-x86_64
 
 fi
 
