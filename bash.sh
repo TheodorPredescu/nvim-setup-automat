@@ -15,7 +15,7 @@ else
     sudo mv nvim.appimage /usr/local/bin/nvim
 fi
 
-if [[ -d ${HOME}/.config ]]; then
+if [[ -d "${HOME}/.config" ]]; then
     echo "Making the .config file"
     mkdir "${HOME}/.config"
 fi
