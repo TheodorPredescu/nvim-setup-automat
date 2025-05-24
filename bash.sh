@@ -5,6 +5,7 @@ source packages.conf
 echo "Works fine"
 
 NVIM_V="v0.11.1"
+# NVIM_V="nightly"
 
 sudo -v
 # checking if lazyvim is installed
@@ -12,15 +13,19 @@ if dpkg -s neovim >/dev/null 2>&1; then
     echo "nvim is configurated"
 else
     echo -e "nvim is not configurated\n     Installing..."
-    curl -fLo nvim.appimage "https://github.com/neovim/neovim/releases/download/${NVIM_V}/nvim.appimage"
+    curl -LO "https://github.com/neovim/neovim/releases/download/${NVIM_V}/nvim-linux-x86_64.tar.gz"
+    tar -xzf nvim-linux-x86_64.tar.gz
+    sudo mv nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 
     if [[ ! -f nvim.appimage ]]; then
         echo "Error in pulling ${NVIM_V} neovim. Exiting..."
         exit 1
     fi
 
-    chmod u+x nvim.appimage
-    sudo mv nvim.appimage /usr/local/bin/nvim
+    tar -xzf nvim-linux-x86_64.tar.gz
+    sudo mv nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+    rm nvim-linux-x86_64.tar.gz
+
 fi
 
 if [[ ! -d "${HOME}/.config" ]]; then
