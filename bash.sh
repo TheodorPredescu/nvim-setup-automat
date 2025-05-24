@@ -15,7 +15,7 @@ else
     echo -e "nvim is not configurated\n     Installing..."
     curl -LO "https://github.com/neovim/neovim/releases/download/${NVIM_V}/nvim-linux-x86_64.tar.gz"
 
-    if [[ -f nvim-linux-x86_64.tar.gz ]]; then
+    if [[ -f nvim-linux-x86_64.tar.gz && -s nvim-linux-x86_64.tar.gz ]]; then
         echo "neovim pulled correcly"
     else
         echo "Error in pulling ${NVIM_V} neovim. Exiting..."
@@ -25,7 +25,7 @@ else
     tar -xzf nvim-linux-x86_64.tar.gz
     sudo mv nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
     rm nvim-linux-x86_64.tar.gz
-    rm nvim-linux-x86_64
+    rm -rf nvim-linux-x86_64
 
 fi
 
@@ -39,14 +39,26 @@ if [[ -d "/home/${USER}/.config/nvim" ]]; then
     exit 0
 else
     echo "nvim not configurated"
+    # It gives error for some reason now
     git clone https://github.com/TheodorPredescu/nvim-lazyvim_config "${HOME}/.config/nvim"
 fi
 
-# for package in "${packages[@]}"; do
-#     if dpkg -s "${package}" >/dev/null 2>&1; then
-#         echo "${package} is installed."
-#     else
-#         echo "${package} is not installed."
-#         echo "Installing..."
-#     fi
-# done
+#Installing the packages
+sudo apt-get update -qq
+
+for package in "${packages[@]}"; do
+    if dpkg -s "${package}" >/dev/null 2>&1; then
+        echo "${package} is installed."
+    else
+        echo "${package} is not installed."
+        echo "Installing..."
+        sudo apt-get install -y "${package}"
+
+        if dpkg -s "${package}" >/dev/null 2>&1; then
+            echo "${package} has installed correcly."
+        else
+            echo "${package} failed to install."
+        fi
+
+    fi
+done
