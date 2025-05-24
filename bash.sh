@@ -63,3 +63,14 @@ for package in "${packages[@]}"; do
 
     fi
 done
+
+#For luarocks
+if command -v luarocks >/dev/null 2>&1; then
+    echo "luarocks is already installed."
+else
+    echo "Installing luarocks..."
+    sudo apt-get install -y luarocks || {
+        echo "Failed to install luarocks."
+        exit 1
+    }
+fi
