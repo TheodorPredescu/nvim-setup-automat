@@ -41,11 +41,14 @@ if [[ -d "/home/${USER}/.config/nvim" ]]; then
 else
     echo "nvim not configurated"
     # It gives error for some reason now
+    if dpkg -s git >/dev/null 2>&1; then
+        echo "Git installed"
+    else
+        CMD=$(./get_package_manager.sh git)
+        eval "$CMD"
+    fi
     git clone https://github.com/TheodorPredescu/nvim-lazyvim_config "${HOME}/.config/nvim"
 fi
-
-#Installing the packages
-sudo apt-get update -qq
 
 for package in "${packages[@]}"; do
     if dpkg -s "${package}" >/dev/null 2>&1; then
