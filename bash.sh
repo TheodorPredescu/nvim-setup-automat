@@ -53,7 +53,9 @@ for package in "${packages[@]}"; do
     else
         echo "${package} is not installed."
         echo "Installing..."
-        sudo apt-get install -y "${package}"
+        # sudo apt-get install -y "${package}"
+        CMD=$(./get_package_manager.sh "$package")
+        eval "$CMD"
 
         if dpkg -s "${package}" >/dev/null 2>&1; then
             echo "${package} has installed correcly."
@@ -69,8 +71,9 @@ if command -v luarocks >/dev/null 2>&1; then
     echo "luarocks is already installed."
 else
     echo "Installing luarocks..."
-    sudo apt-get install -y luarocks || {
+    CMD_ROCKS=$(./get_package_manager.sh luarocks)
+    if ! eval "$CMD_ROCKS"; then
         echo "Failed to install luarocks."
         exit 1
-    }
+    fi
 fi
