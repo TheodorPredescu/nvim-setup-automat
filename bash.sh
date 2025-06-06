@@ -8,6 +8,19 @@ NVIM_V="v0.11.1"
 # NVIM_V="nightly"
 
 sudo -v
+
+#For curl
+if command -v curl >/dev/null 2>&1; then
+    echo "curl is installed."
+else
+    echo "Installing curl..."
+    CMD_CURL=$(./get_package_manager.sh curl)
+    if ! eval "$CMD_CURL"; then
+        echo "Failed to install curl."
+        exit 1
+    fi
+fi
+
 # checking if lazyvim is installed
 if command -v nvim >/dev/null 2>&1; then
     echo "nvim is configurated"
